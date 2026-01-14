@@ -186,3 +186,38 @@ yarn add -D prettier-plugin-tailwindcss
 ```
 
 </details>
+
+<br />
+
+<!-- 조건부 라우팅 설정 -->
+<details>
+
+<summary><strong>조건부 라우팅 설정</strong></summary>
+<br />
+
+```ts
+/* src/middleware.ts */
+
+import { NextRequest, NextResponse } from 'next/server';
+
+const AUTHENTICATED_URL = ['/'];
+
+export const middleware = (req: NextRequest) => {
+  const url = req.nextUrl.clone();
+
+  const isAuthenticated = true;
+
+  if (!isAuthenticated && AUTHENTICATED_URL.includes(url.pathname)) {
+    url.pathname = '/signin';
+    return NextResponse.redirect(url);
+  }
+
+  return NextResponse.next();
+};
+
+export const config = {
+  matcher: ['/'],
+};
+```
+
+</details>

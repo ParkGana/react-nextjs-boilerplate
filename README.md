@@ -221,3 +221,39 @@ export const config = {
 ```
 
 </details>
+
+<br />
+
+<!-- Hydration 설정 -->
+<details>
+
+<summary><strong>Hydration 설정</strong></summary>
+<br />
+
+```tsx
+/* src/hydration.tsx */
+
+function Hydration({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
+}
+
+export default Provider;
+```
+
+```tsx
+/* src/app/layout.tsx */
+
+import Hydration from '@/hydration';
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>
+        <Hydration>{children}</Hydration>
+      </body>
+    </html>
+  );
+}
+```
+
+</details>

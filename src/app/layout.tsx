@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Hydration from '@/hydration';
 import Provider from '@/provider';
 import '../styles/globals.css';
 import '../styles/tailwind.css';
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Hydration>{children}</Hydration>
+        </Provider>
       </body>
     </html>
   );

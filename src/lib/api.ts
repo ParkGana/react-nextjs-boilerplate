@@ -2,6 +2,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 type ParamsType = Record<string, string | number | boolean>;
 
+/* 공통 로직 분리 */
 const request = async (url: string, options: RequestInit & { params?: ParamsType } = {}) => {
   const { params, headers, ...rest } = options;
 

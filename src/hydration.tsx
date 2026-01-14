@@ -1,5 +1,5 @@
-function Hydration({ children }: { children: React.ReactNode }) {
+const Hydration = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
-}
+};
 
 export default Hydration;

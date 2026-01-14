@@ -271,40 +271,38 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
+type ParamsType = Record<string, string | number | boolean>;
+
+const request = async (url: string, options: RequestInit & { params?: ParamsType } = {}) => {
+  const { params, headers, ...rest } = options;
+
+  const query = params
+    ? `?${new URLSearchParams(Object.entries(params).map(([k, v]) => [k, String(v)])).toString()}`
+    : '';
+
+  const res = await fetch(`${BASE_URL}${url}${query}`, {
+    ...rest,
+    headers: {
+      'Content-Type': 'application/json',
+      ...headers,
+    },
+  });
+
+  if (!res.ok) throw new Error(`API Error ${res.status}`);
+
+  return res.json();
+};
+
 const api = {
-  get: async (url: string, params?: any, headers?: any) => {
-    const res = await fetch(`${BASE_URL}${url}${params ? `?${new URLSearchParams(params).toString()}` : ''}`, {
-      method: 'GET',
-      ...(headers && { headers }),
-    });
-    return res.json();
-  },
+  get: (url: string, params?: ParamsType, headers?: HeadersInit) => request(url, { method: 'GET', params, headers }),
 
-  post: async (url: string, data?: any, headers?: any) => {
-    const res = await fetch(`${BASE_URL}${url}`, {
-      method: 'POST',
-      ...(headers && { headers }),
-      ...(data && { body: JSON.stringify(data) }),
-    });
-    return res.json();
-  },
+  post: (url: string, data?: any, headers?: HeadersInit) =>
+    request(url, { method: 'POST', body: JSON.stringify(data), headers }),
 
-  patch: async (url: string, data?: any, headers?: any) => {
-    const res = await fetch(`${BASE_URL}${url}`, {
-      method: 'PATCH',
-      ...(headers && { headers }),
-      ...(data && { body: JSON.stringify(data) }),
-    });
-    return res.json();
-  },
+  patch: (url: string, data?: any, headers?: HeadersInit) =>
+    request(url, { method: 'PATCH', body: JSON.stringify(data), headers }),
 
-  delete: async (url: string, headers?: any) => {
-    const res = await fetch(`${BASE_URL}${url}`, {
-      method: 'DELETE',
-      ...(headers && { headers }),
-    });
-    return res.json();
-  },
+  delete: (url: string, headers?: HeadersInit) => request(url, { method: 'DELETE', headers }),
 };
 
 export default api;

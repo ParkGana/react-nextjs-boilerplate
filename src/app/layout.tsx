@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import PageLayout from '@/components/layout/PageLayout';
 import Hydration from '@/hydration';
 import Provider from '@/provider';
 import '../styles/globals.css';
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider>
-          <Hydration>{children}</Hydration>
+          <Hydration>
+            <PageLayout>{children}</PageLayout>
+          </Hydration>
         </Provider>
       </body>
     </html>

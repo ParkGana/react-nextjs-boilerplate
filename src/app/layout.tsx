@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../styles/globals.css";
-import "../styles/tailwind.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import '../styles/globals.css';
+import '../styles/tailwind.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "React Next.js Boilerplate",
-  description: "React Next.js Boilerplate",
+  title: 'React Next.js Boilerplate',
+  description: 'React Next.js Boilerplate',
 };
 
 export default function RootLayout({

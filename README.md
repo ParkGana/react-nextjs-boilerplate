@@ -203,6 +203,7 @@ yarn add -D prettier-plugin-tailwindcss
 import { NextRequest, NextResponse } from 'next/server';
 
 const AUTHENTICATED_URL = ['/'];
+const NON_AUTHENTICATED_URL = ['/signin'];
 
 export const middleware = (req: NextRequest) => {
   const url = req.nextUrl.clone();
@@ -214,11 +215,16 @@ export const middleware = (req: NextRequest) => {
     return NextResponse.redirect(url);
   }
 
+  if (isAuthenticated && NON_AUTHENTICATED_URL.includes(url.pathname)) {
+    url.pathname = '/';
+    return NextResponse.redirect(url);
+  }
+
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ['/'],
+  matcher: ['/', '/signin'],
 };
 ```
 

@@ -104,7 +104,7 @@ yarn add -D prettier
 ```tsx
 /* src/provider.tsx */
 
-function Provider({ children }: { children: React.ReactNode }) {
+const Provider = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 }
 
@@ -116,7 +116,7 @@ export default Provider;
 
 import Provider from '@/provider';
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <html lang="en">
       <body>
@@ -125,6 +125,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
+export default RootLayout;
 ```
 
 </details>
@@ -233,11 +235,11 @@ export const config = {
 ```tsx
 /* src/hydration.tsx */
 
-function Hydration({ children }: { children: React.ReactNode }) {
+const Hydration = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 }
 
-export default Provider;
+export default Hydration;
 ```
 
 ```tsx
@@ -245,7 +247,7 @@ export default Provider;
 
 import Hydration from '@/hydration';
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <html lang="en">
       <body>
@@ -254,6 +256,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
+export default RootLayout;
 ```
 
 </details>
@@ -344,7 +348,7 @@ export default QueryProvider;
 
 import QueryProvider from './providers/queryProvider';
 
-function Provider({ children }: { children: React.ReactNode }) {
+const Provider = ({ children }: { children: React.ReactNode }) => {
   return <QueryProvider>{children}</QueryProvider>;
 }
 

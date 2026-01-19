@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import PageLayout from '@/components/layout/PageLayout';
-import Hydration from '@/hydration';
 import Provider from '@/provider';
 import '../styles/globals.css';
 import '../styles/tailwind.css';
@@ -15,9 +14,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     <html lang="en">
       <body>
         <Provider>
-          <Hydration>
-            <PageLayout>{children}</PageLayout>
-          </Hydration>
+          <PageLayout>{children}</PageLayout>
         </Provider>
       </body>
     </html>

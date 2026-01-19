@@ -232,44 +232,6 @@ export const config = {
 
 <br />
 
-<!-- Hydration 설정 -->
-<details>
-
-<summary><strong>Hydration 설정</strong></summary>
-<br />
-
-```tsx
-/* src/hydration.tsx */
-
-const Hydration = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>;
-}
-
-export default Hydration;
-```
-
-```tsx
-/* src/app/layout.tsx */
-
-import Hydration from '@/hydration';
-
-const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  return (
-    <html lang="en">
-      <body>
-        <Hydration>{children}</Hydration>
-      </body>
-    </html>
-  );
-}
-
-export default RootLayout;
-```
-
-</details>
-
-<br />
-
 <!-- Fetch 설정 -->
 <details>
 
